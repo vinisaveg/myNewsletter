@@ -1,22 +1,25 @@
 const htmlFile = "http://localhost:3000/newsletter.html";
 
 // Function will receive a content
-export const generate = async () => {
-  await fetch(htmlFile)
-    .then((response) => response.text())
-    .then((response) => {
-      let parser = new DOMParser();
+export const generate = (content: HTMLElement | null): Promise<Document> => {
+  return new Promise((resolve, reject) => {
+    fetch(htmlFile)
+      .then((response) => response.text())
+      .then((response) => {
+        let parser = new DOMParser();
 
-      let newsletter = parser.parseFromString(response, "text/html");
+        let newsletter = parser.parseFromString(response, "text/html");
 
-      //Append content received into the documment
+        //Append content received into the documment
+        if (content) {
+          newsletter.getElementById("newsletter")?.appendChild(content);
 
-      console.log(newsletter);
+          resolve(newsletter);
+          // return the document with the new content appended
+        }
 
-      console.log(newsletter.getElementById("newsletter"));
-
-      // return the document with the new content appended
-    })
-
-    .catch((error) => console.log(error));
+        reject();
+      })
+      .catch((error) => console.log(error));
+  });
 };
