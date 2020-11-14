@@ -1,21 +1,28 @@
 const htmlFile = "http://localhost:3000/newsletter.html";
 
 // Function will receive a content
-export const generate = (content: HTMLElement | null): Promise<Document> => {
+export const generate = (content: string): Promise<Document> => {
   return new Promise((resolve, reject) => {
     fetch(htmlFile)
       .then((response) => response.text())
       .then((response) => {
         let parser = new DOMParser();
 
+        //parse text response to Document DOM Object>
         let newsletter = parser.parseFromString(response, "text/html");
 
-        //Append content received into the documment
-        if (content) {
-          newsletter.getElementById("newsletter")?.appendChild(content);
+        //create a div to insert the content from ui
+        let body = document.createElement("div");
 
-          resolve(newsletter);
+        //insert the content from ui
+        body.innerHTML = content;
+
+        //checks content and append into the documment inside #newsletter div
+        if (content) {
+          newsletter.getElementById("newsletter")?.appendChild(body);
+
           // return the document with the new content appended
+          resolve(newsletter);
         }
 
         reject();
