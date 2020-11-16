@@ -1,13 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 import { Element } from "./interfaces/Element";
 import { generate } from "./services/generateEmail";
 
+import { handlePaths } from "./services/handlePaths";
+
 function App() {
   // Gather the content created from UI
   const [elements, setElements] = useState<Array<Element>>([]);
   const [contentHref, setContentHref] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    handlePaths(
+      "https://images.pexels.com/photos/4969889/pexels-photo-4969889.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+    );
+  });
 
   let newElement: Element = {
     id: Math.random() * 1000000,
