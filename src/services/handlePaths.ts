@@ -9,6 +9,6 @@ export const handlePaths = (src: string) => {
 
   // console.log(newSrc);
   // console.log(imageName);
-  // console.log(imageNewSrc);
+  console.log(imageNewSrc);
   // console.log(path.dirname("https://images.pexels.com/photos/"));
 };
