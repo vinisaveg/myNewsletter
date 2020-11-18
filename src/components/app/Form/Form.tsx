@@ -4,8 +4,10 @@ import { Element } from "../../../interfaces/Element";
 import { generate } from "../../../services/generateEmail";
 
 import Hero from "../../layouts/Hero/Hero.component";
+import Info from "../Info/Info";
 
-import { Button } from "../../../styles/shared/Button";
+// import { Button } from "../../../styles/shared/Button";
+import { Wrapper } from "./styles";
 
 const Form: FunctionComponent = () => {
   // Gather the content created from UI
@@ -41,11 +43,9 @@ const Form: FunctionComponent = () => {
   };
 
   return (
-    <div>
-      <Button padding={["12px", "36px"]} color="white">
-        Build
-      </Button>
-    </div>
+    <Wrapper>
+      <Info />
+    </Wrapper>
   );
 };
 
