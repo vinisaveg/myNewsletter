@@ -5,6 +5,8 @@ import { generate } from "../../../services/generateEmail";
 
 import Hero from "../../layouts/Hero/Hero.component";
 
+import { Button } from "../../../styles/shared/Button";
+
 const Form: FunctionComponent = () => {
   // Gather the content created from UI
   const [elements, setElements] = useState<Array<Element>>([]);
@@ -40,26 +42,9 @@ const Form: FunctionComponent = () => {
 
   return (
     <div>
-      <br />
-      <button onClick={addElements}>Add Content Element</button>
-      <br />
-      <button onClick={build}>Prepare!</button>
-      <br />
-      <a
-        download="export.html"
-        target="_blank"
-        href={`data:text/html, ${contentHref?.innerHTML}`}
-        id="buildBtn"
-        rel="noreferrer"
-      >
+      <Button padding={["12px", "36px"]} color="white">
         Build
-      </a>
-
-      <div id="content">
-        {elements.map((element) => (
-          <div key={element.id}>{element.element}</div>
-        ))}
-      </div>
+      </Button>
     </div>
   );
 };

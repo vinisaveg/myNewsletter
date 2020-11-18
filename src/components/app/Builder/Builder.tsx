@@ -2,13 +2,15 @@ import React, { FunctionComponent } from "react";
 
 import Form from "../Form/Form";
 
+import { Wrapper } from "./styles";
+
 const Builder: FunctionComponent = () => {
   return (
-    <div className="App">
+    <Wrapper className="App">
       <h1>Hello newsletter builder!</h1>
 
       <Form />
-    </div>
+    </Wrapper>
   );
 };
 
