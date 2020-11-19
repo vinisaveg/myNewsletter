@@ -4,8 +4,9 @@ import { Element } from "../../../interfaces/Element";
 import { generate } from "../../../services/generateEmail";
 
 import Hero from "../../layouts/Hero/Hero.component";
+import LayoutForm from "../LayoutForm/LayoutForm";
 
-import { Wrapper } from "./styles";
+import { Option, Select, Wrapper } from "./styles";
 
 const LayoutSelection: FunctionComponent = () => {
   // Gather the content created from UI
@@ -42,7 +43,22 @@ const LayoutSelection: FunctionComponent = () => {
   };
 
   return (
-    <Wrapper>
+    <>
+      <Wrapper>
+        <Select
+          onChange={(e) => console.log(e.target.value)}
+          className="custom-select"
+        >
+          <Option value="default">Select a layout</Option>
+          <Option value="hero">Hero</Option>
+          <Option value="imageCenter">Image Center</Option>
+          <Option value="4ProductsRow">4 Products Row</Option>
+          <Option value="horizontalImage">Horizontal Image</Option>
+        </Select>
+      </Wrapper>
+
+      <LayoutForm />
+
       <div>
         <br />
         <button onClick={addElements}>Add Content Element</button>
@@ -65,7 +81,7 @@ const LayoutSelection: FunctionComponent = () => {
           ))}
         </div>
       </div>
-    </Wrapper>
+    </>
   );
 };
 
