@@ -16,10 +16,14 @@ const Info: FunctionComponent = () => {
       imagesFolderPath: "",
     },
     onSubmit: (values) => {
-      console.log(values);
       setAppContext({ ...values, content: "<Newsletter />" });
+      console.log(appContext);
     },
   });
+
+  const saveInfoOnNewsletter = () => {
+    // Fetch HTML and insert Title & Snippet
+  };
 
   return (
     <Wrapper onSubmit={formik.handleSubmit}>

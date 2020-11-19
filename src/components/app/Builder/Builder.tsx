@@ -3,6 +3,7 @@ import React, { FunctionComponent, useState } from "react";
 import { AppContext, InitialAppContext } from "../../../context/context";
 
 import Form from "../Form/Form";
+import LayoutSelection from "../LayoutsSelection/LayoutSelection";
 import { Wrapper } from "./styles";
 
 const Builder: FunctionComponent = () => {
@@ -14,6 +15,8 @@ const Builder: FunctionComponent = () => {
         <h1 style={{ color: "white" }}>Hello myNewsletter!</h1>
 
         <Form />
+
+        <LayoutSelection />
       </Wrapper>
     </AppContext.Provider>
   );
