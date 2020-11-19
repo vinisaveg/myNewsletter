@@ -1,14 +1,24 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useState } from "react";
+
+import { AppContext, InitialAppContext } from "../../../context/context";
 
 import Form from "../Form/Form";
+import LayoutSelection from "../LayoutsSelection/LayoutSelection";
+import { Wrapper } from "./styles";
 
 const Builder: FunctionComponent = () => {
-  return (
-    <div className="App">
-      <h1>Hello newsletter builder!</h1>
+  const appContext = useState(InitialAppContext);
 
-      <Form />
-    </div>
+  return (
+    <AppContext.Provider value={appContext}>
+      <Wrapper className="App">
+        <h1 style={{ color: "white" }}>Hello myNewsletter!</h1>
+
+        <Form />
+
+        <LayoutSelection />
+      </Wrapper>
+    </AppContext.Provider>
   );
 };
 
