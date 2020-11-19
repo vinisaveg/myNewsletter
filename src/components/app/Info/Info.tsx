@@ -21,10 +21,6 @@ const Info: FunctionComponent = () => {
     },
   });
 
-  const saveInfoOnNewsletter = () => {
-    // Fetch HTML and insert Title & Snippet
-  };
-
   return (
     <Wrapper onSubmit={formik.handleSubmit}>
       <Input
@@ -54,7 +50,7 @@ const Info: FunctionComponent = () => {
 
       <Button
         type="submit"
-        margin={["0px", "10px"]}
+        margin={["0px", "0px", "0px", "10px"]}
         color="white"
         bgColor="#f5476a;"
       >

@@ -2,9 +2,10 @@ import React, { FunctionComponent, useState } from "react";
 
 import { AppContext, InitialAppContext } from "../../../context/context";
 
-import Form from "../Form/Form";
-import LayoutSelection from "../LayoutsSelection/LayoutSelection";
 import { Wrapper } from "./styles";
+
+import LayoutSelection from "../LayoutSelection/LayoutSelection";
+import Info from "../Info/Info";
 
 const Builder: FunctionComponent = () => {
   const appContext = useState(InitialAppContext);
@@ -14,7 +15,7 @@ const Builder: FunctionComponent = () => {
       <Wrapper className="App">
         <h1 style={{ color: "white" }}>Hello myNewsletter!</h1>
 
-        <Form />
+        <Info />
 
         <LayoutSelection />
       </Wrapper>
