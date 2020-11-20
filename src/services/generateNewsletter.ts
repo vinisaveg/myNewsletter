@@ -1,7 +1,7 @@
 const htmlFile = "http://localhost:3000/newsletter.html";
 
 // Function will receive a content
-export const generate = (content: string): Promise<Document> => {
+export const generateNewsletter = (content: string): Promise<Document> => {
   return new Promise((resolve, reject) => {
     fetch(htmlFile)
       .then((response) => response.text())
