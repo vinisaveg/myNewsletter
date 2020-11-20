@@ -1,6 +1,6 @@
 // import path from "path";
 
-export const handlePaths = (src: string) => {
+export const handleImagePaths = (src: string) => {
   let newSrc = src.split("/");
 
   let imageName = newSrc[newSrc.length - 1];
