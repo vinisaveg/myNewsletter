@@ -3,6 +3,6 @@ import { ReactElement } from "react";
 export type Element = {
   id: number;
   name: string;
-  element: ReactElement;
+  element: ReactElement | undefined;
   path?: string;
 };
