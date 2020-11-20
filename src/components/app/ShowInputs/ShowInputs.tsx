@@ -1,26 +1,56 @@
-import React, { FunctionComponent, useEffect, useState } from "react";
+import { useFormik } from "formik";
+import React, { FunctionComponent, useContext } from "react";
+
+import { AppContext } from "../../../context/context";
 
 interface ShowInputsProps {
-  initialValuesFormik: Array<any> | undefined;
+  initialValuesFormik: any;
+  layout: Array<string>;
+  selectedLayout: string;
 }
 
 const ShowInputs: FunctionComponent<ShowInputsProps> = ({
   initialValuesFormik,
+  layout,
+  selectedLayout,
 }) => {
-  const [values, setValues] = useState<Array<any>>();
+  const [appContext, setAppContext] = useContext(AppContext);
 
   // Build new formik with content from initialValuesFormik data
+  const formik = useFormik({
+    initialValues: initialValuesFormik,
+    enableReinitialize: true,
+    onSubmit: (values) => setValues(values),
+  });
 
-  useEffect(() => {
-    setValues(initialValuesFormik);
-    console.log(initialValuesFormik);
-  }, [initialValuesFormik]);
+  const setValues = (values: any) => {
+    setAppContext({
+      ...appContext,
+      currentElement: selectedLayout,
+      currentElementOptions: values,
+    });
+  };
 
-  return (
-    <div>
-      <span></span>
-    </div>
-  );
+  if (layout) {
+    return (
+      <form onSubmit={formik.handleSubmit}>
+        {layout.map((layoutKey) => (
+          <input
+            onChange={formik.handleChange}
+            value={formik.values.layoutFound}
+            key={layoutKey}
+            name={layoutKey}
+            type="text"
+            placeholder={layoutKey}
+          />
+        ))}
+
+        <button type="submit">Add</button>
+      </form>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default ShowInputs;

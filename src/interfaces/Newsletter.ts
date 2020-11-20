@@ -3,4 +3,6 @@ export type Newsletter = {
   snippet: string;
   imagesFolderPath: string;
   content?: string;
+  currentElement: string;
+  currentElementOptions?: any;
 };

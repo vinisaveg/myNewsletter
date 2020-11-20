@@ -16,8 +16,7 @@ const Info: FunctionComponent = () => {
       imagesFolderPath: "",
     },
     onSubmit: (values) => {
-      setAppContext({ ...values, content: "<Newsletter />" });
-      console.log(appContext);
+      setAppContext({ ...appContext, ...values, content: "<Newsletter />" });
     },
   });
 

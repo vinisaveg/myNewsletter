@@ -1,3 +1,6 @@
+import Hero from "../components/layouts/Hero/Hero.component";
+import React from "react";
+
 const data = [
   {
     name: "hero",
@@ -7,6 +10,7 @@ const data = [
       copy: "",
       subCopy: "",
     },
+    element: (props: any) => <Hero {...props} />,
   },
 ];
 
