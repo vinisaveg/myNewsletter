@@ -7,6 +7,7 @@ export const InitialAppContext: Newsletter = {
   snippet: "",
   imagesFolderPath: "",
   content: "",
+  elements: [],
   currentElement: "",
 };
 

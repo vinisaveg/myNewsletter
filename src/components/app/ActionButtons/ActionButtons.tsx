@@ -1,24 +1,20 @@
-import React, { FunctionComponent } from "react";
-
-import { Element } from "../../../interfaces/Element";
+import React, { FunctionComponent, useContext } from "react";
+import { AppContext } from "../../../context/context";
 
 interface ActionButtonsProps {
-  addElements: () => void;
   build: () => Promise<void>;
   contentHref: HTMLElement | null;
-  elements: Array<Element>;
 }
 
 const ActionButtons: FunctionComponent<ActionButtonsProps> = ({
-  addElements,
   build,
-  elements,
   contentHref,
 }) => {
+  const [appContext] = useContext(AppContext);
+
   return (
     <div>
       <br />
-      <button onClick={addElements}>Add Content Element</button>
       <br />
       <button onClick={build}>Prepare!</button>
       <br />
@@ -33,7 +29,7 @@ const ActionButtons: FunctionComponent<ActionButtonsProps> = ({
       </a>
 
       <div id="content">
-        {elements?.map((element) => (
+        {appContext.elements?.map((element) => (
           <div key={element.id}>{element.element}</div>
         ))}
       </div>

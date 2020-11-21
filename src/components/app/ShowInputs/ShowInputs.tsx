@@ -2,16 +2,18 @@ import { useFormik } from "formik";
 import React, { FunctionComponent, useContext } from "react";
 
 import { AppContext } from "../../../context/context";
+import { Element } from "../../../interfaces/Element";
+import layouts from "../../../data/layouts";
 
 interface ShowInputsProps {
   initialValuesFormik: any;
-  layout: Array<string>;
+  layoutKeys: Array<string>;
   selectedLayout: string;
 }
 
 const ShowInputs: FunctionComponent<ShowInputsProps> = ({
   initialValuesFormik,
-  layout,
+  layoutKeys,
   selectedLayout,
 }) => {
   const [appContext, setAppContext] = useContext(AppContext);
@@ -23,25 +25,53 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({
     onSubmit: (values) => setValues(values),
   });
 
+  // Set into context the actual context + the current Element Options from inputs
   const setValues = (values: any) => {
+    addElement(
+      selectedLayout,
+      values,
+      appContext.currentElement,
+      appContext.elements
+    );
+  };
+
+  //Add new element created from the inputs values
+  const addElement = (
+    selectedLayout: string,
+    values: any,
+    currentElement: string,
+    elements: Array<Element>
+  ) => {
+    const layout = layouts.find((layout) => (layout.name = currentElement));
+
+    const elementOptions = values;
+
+    let newElement: Element = {
+      id: Math.random() * 1000000,
+      name: currentElement,
+      element: layout?.element(elementOptions),
+    };
+
     setAppContext({
       ...appContext,
+      elements: [...elements, newElement],
       currentElement: selectedLayout,
       currentElementOptions: values,
     });
   };
 
-  if (layout) {
+  // For each field needed, there is a Input Field
+  if (layoutKeys) {
     return (
       <form onSubmit={formik.handleSubmit}>
-        {layout.map((layoutKey) => (
+        {layoutKeys.map((key) => (
           <input
             onChange={formik.handleChange}
             value={formik.values.layoutFound}
-            key={layoutKey}
-            name={layoutKey}
+            key={key}
+            name={key}
             type="text"
-            placeholder={layoutKey}
+            placeholder={key}
           />
         ))}
 
