@@ -10,48 +10,52 @@ interface LayoutFormProps {
 }
 
 const LayoutForm: FunctionComponent<LayoutFormProps> = ({ selectedLayout }) => {
-  // State to keep track of layout values
-  const [layout, setLayout] = useState<Array<string>>([]);
+  // State to keep track of layout fields needed to fill the element
+  const [layoutKeys, setLayout] = useState<Array<string>>([]);
+  // State to set how the form fields will look like, based on the layout
   const [initialValuesFormik, setInitialValuesFormik] = useState<any>();
 
   useEffect(() => {
-    // get layout -> get each field
+    //Search for the layout in the layouts Data
     const foundLayout = layouts.find(
       (layout) => layout.name === selectedLayout
     );
 
     if (foundLayout) {
+      // set all layout fields
       setLayout(Object.keys(foundLayout?.fields));
 
       let allValues: any = {};
 
-      layout.forEach((field) => {
-        allValues[field] = "";
+      // Set the Formik Object Type to handle the inputs fields values
+      layoutKeys.forEach((key) => {
+        allValues[key] = "";
       });
 
-      // set State
       setInitialValuesFormik(allValues);
     } else {
       setInitialValuesFormik({});
       setLayout([]);
     }
 
-    // pass initialValuesFormik to showForm components
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLayout]);
 
-  // Reads the form state and build inputs
-  return (
-    <Wrapper>
-      <h1 style={{ color: "white" }}>Layout: {selectedLayout}</h1>
+  if (selectedLayout) {
+    return (
+      <Wrapper>
+        <h1 style={{ color: "white" }}>Layout: {selectedLayout}</h1>
 
-      <ShowInputs
-        selectedLayout={selectedLayout}
-        layout={layout}
-        initialValuesFormik={initialValuesFormik}
-      />
-    </Wrapper>
-  );
+        <ShowInputs
+          selectedLayout={selectedLayout}
+          layoutKeys={layoutKeys}
+          initialValuesFormik={initialValuesFormik}
+        />
+      </Wrapper>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default LayoutForm;
