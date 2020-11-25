@@ -1,4 +1,5 @@
-import React, { FunctionComponent, useState } from "react";
+import React, { FunctionComponent, useContext, useState } from "react";
+import { AppContext } from "../../../context/context";
 
 import { generateNewsletter } from "../../../services/generateNewsletter";
 
@@ -8,8 +9,8 @@ import LayoutForm from "../LayoutForm/LayoutForm";
 import { Option, Select, Wrapper } from "./styles";
 
 const LayoutSelection: FunctionComponent = () => {
-  const [selectedLayout, setSelectedLayout] = useState("");
   const [contentHref, setContentHref] = useState<HTMLElement | null>(null);
+  const [appContext, setAppContext] = useContext(AppContext);
 
   const build = async () => {
     // Update all image elements src to the correct folder
@@ -29,11 +30,15 @@ const LayoutSelection: FunctionComponent = () => {
     //DONE!
   };
 
+  const updateSelectedLayout = (e: any) => {
+    setAppContext({ ...appContext, currentElement: e.target.value });
+  };
+
   return (
     <>
       <Wrapper>
         <Select
-          onChange={(e) => setSelectedLayout(e.target.value)}
+          onChange={(e: any) => updateSelectedLayout(e)}
           className="custom-select"
         >
           <Option value="default">Select a layout</Option>
@@ -44,7 +49,7 @@ const LayoutSelection: FunctionComponent = () => {
         </Select>
       </Wrapper>
 
-      <LayoutForm selectedLayout={selectedLayout} />
+      <LayoutForm selectedLayout={appContext.currentElement} />
 
       <ActionButtons build={build} contentHref={contentHref} />
     </>
