@@ -1,22 +1,42 @@
 import { useFormik } from "formik";
-import React, { FunctionComponent, useContext } from "react";
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 import { AppContext } from "../../../context/context";
 import { Element } from "../../../interfaces/Element";
 import layouts from "../../../data/layouts";
-
 interface ShowInputsProps {
-  initialValuesFormik: any;
-  layoutKeys: Array<string>;
   selectedLayout: string;
 }
 
-const ShowInputs: FunctionComponent<ShowInputsProps> = ({
-  initialValuesFormik,
-  layoutKeys,
-  selectedLayout,
-}) => {
+const ShowInputs: FunctionComponent<ShowInputsProps> = ({ selectedLayout }) => {
   const [appContext, setAppContext] = useContext(AppContext);
+  const [initialValuesFormik, setInitialValuesFormik] = useState<any>({});
+  const [layoutKeys, setLayoutKeys] = useState<Array<string>>([]);
+
+  useEffect(() => {
+    const foundLayout = layouts.find(
+      (layout) => layout.name === selectedLayout
+    );
+
+    if (foundLayout) {
+      // set all layout fields
+      setLayoutKeys(Object.keys(foundLayout.fields));
+
+      // Set the Formik Object Type to handle the inputs fields values
+      layoutKeys.forEach((key) => {
+        setInitialValuesFormik({ [key]: "", ...initialValuesFormik });
+      });
+    } else {
+      setInitialValuesFormik({});
+    }
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedLayout]);
 
   // Build new formik with content from initialValuesFormik data
   const formik = useFormik({
@@ -27,30 +47,19 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({
 
   // Set into context the actual context + the current Element Options from inputs
   const setValues = (values: any) => {
-    addElement(
-      selectedLayout,
-      values,
-      appContext.currentElement,
-      appContext.elements
+    const layout = layouts.find(
+      (layout) => (layout.name = appContext.currentElement)
     );
-  };
-
-  //Add new element created from the inputs values
-  const addElement = (
-    selectedLayout: string,
-    values: any,
-    currentElement: string,
-    elements: Array<Element>
-  ) => {
-    const layout = layouts.find((layout) => (layout.name = currentElement));
 
     const elementOptions = values;
 
     let newElement: Element = {
       id: Math.random() * 1000000,
-      name: currentElement,
+      name: appContext.currentElement,
       element: layout?.element(elementOptions),
     };
+
+    let elements = appContext.elements;
 
     setAppContext({
       ...appContext,
@@ -67,8 +76,9 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({
         {layoutKeys.map((key) => (
           <input
             onChange={formik.handleChange}
-            value={formik.values.layoutFound}
+            // value={formik.values[key]}
             key={key}
+            id={key}
             name={key}
             type="text"
             placeholder={key}
