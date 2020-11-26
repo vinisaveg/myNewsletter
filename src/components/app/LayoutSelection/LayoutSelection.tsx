@@ -2,6 +2,7 @@ import React, { FunctionComponent, useContext, useState } from "react";
 import { AppContext } from "../../../context/context";
 
 import { generateNewsletter } from "../../../services/generateNewsletter";
+import { handleImagePaths } from "../../../services/handleImagePaths";
 
 import ActionButtons from "../ActionButtons/ActionButtons";
 import LayoutForm from "../LayoutForm/LayoutForm";
@@ -23,8 +24,15 @@ const LayoutSelection: FunctionComponent = () => {
       let page = await generateNewsletter(content);
       // generate function returns the full document with all the content
 
+      // Handle image paths to export
+      let pageWithPathUpdated = handleImagePaths(
+        page,
+        appContext.imagesFolderPath,
+        appContext.elements
+      );
+
       // set href to download the html file
-      setContentHref(page.documentElement);
+      setContentHref(pageWithPathUpdated.documentElement);
     }
 
     //DONE!

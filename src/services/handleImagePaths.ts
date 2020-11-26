@@ -1,14 +1,22 @@
-// import path from "path";
+import { Element } from "../interfaces/Element";
 
-export const handleImagePaths = (src: string) => {
-  let newSrc = src.split("/");
+export const handleImagePaths = (
+  page: Document,
+  imageFolderPath: string,
+  elements: Array<Element>
+): Document => {
+  //Update all images with the Image Folder Path
+  page.querySelectorAll(".hero").forEach((child) => {
+    let elementFound = elements.find(
+      (element) => element.id === child.getElementsByTagName("img")[0].id
+    );
 
-  let imageName = newSrc[newSrc.length - 1];
+    child.getElementsByTagName(
+      "img"
+    )[0].src = `./${imageFolderPath}/${elementFound?.imageName}`;
 
-  let imageNewSrc = `./src/${imageName}`;
+    //console.log(child.getElementsByTagName("img")[0]);
+  });
 
-  // console.log(newSrc);
-  // console.log(imageName);
-  console.log(imageNewSrc);
-  // console.log(path.dirname("https://images.pexels.com/photos/"));
+  return page;
 };

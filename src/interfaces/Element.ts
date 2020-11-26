@@ -1,8 +1,8 @@
 import { ReactElement } from "react";
 
 export type Element = {
-  id: number;
+  id: string;
   name: string;
   element?: ReactElement;
-  path?: string;
+  imageName?: string;
 };

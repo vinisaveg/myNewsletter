@@ -7,15 +7,18 @@ interface HeroProps {
   link?: string;
   copy?: string;
   subCopy?: string;
+  id?: string;
 }
 
-const Hero: FunctionComponent<HeroProps> = ({ link, copy, subCopy }) => {
+const Hero: FunctionComponent<HeroProps> = ({ link, copy, subCopy, id }) => {
   return (
     <div className="hero">
       <a href={link}>
         <img
+          id={id}
           src="https://avatarfiles.alphacoders.com/228/228143.jpg"
           alt="Rick"
+          className="image"
         />
       </a>
 
