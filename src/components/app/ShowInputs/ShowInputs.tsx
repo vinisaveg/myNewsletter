@@ -53,9 +53,14 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({ selectedLayout }) => {
 
     const elementOptions = values;
 
+    let newElementId = (Math.random() * 1000000).toString();
+
+    elementOptions.id = newElementId;
+
     let newElement: Element = {
-      id: Math.random() * 1000000,
+      id: newElementId,
       name: appContext.currentElement,
+      imageName: elementOptions.imageName ? elementOptions.imageName : "",
       element: layout?.element(elementOptions),
     };
 
@@ -65,7 +70,7 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({ selectedLayout }) => {
       ...appContext,
       elements: [...elements, newElement],
       currentElement: selectedLayout,
-      currentElementOptions: values,
+      currentElementOptions: elementOptions,
     });
   };
 

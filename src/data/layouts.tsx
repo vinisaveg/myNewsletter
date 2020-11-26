@@ -5,7 +5,7 @@ const data = [
   {
     name: "hero",
     fields: {
-      imagePath: "",
+      imageName: "",
       link: "",
       copy: "",
       subCopy: "",
