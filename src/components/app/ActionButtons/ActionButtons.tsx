@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useContext, useState } from "react";
 import { AppContext } from "../../../context/context";
 
-import { Wrapper } from "./styles";
+import { ExportButton, Wrapper } from "./styles";
 
 import { generateNewsletter } from "../../../services/generateNewsletter";
 import { handleImagePaths } from "../../../services/handleImagePaths";
@@ -39,28 +39,23 @@ const ActionButtons: FunctionComponent<ActionButtonsProps> = () => {
   return (
     <Wrapper>
       <Button
-        margin={["0px", "0px", "0px", "10px"]}
+        margin={["0px", "0px", "0px", "0px"]}
         color="white"
         bgColor="#f5476a;"
         onClick={build}
       >
-        Prepare!
+        Build
       </Button>
-      <a
+
+      <ExportButton
         download="newsletter.html"
         target="_blank"
         href={`data:text/html, ${newsletterContent?.innerHTML}`}
         id="buildBtn"
         rel="noreferrer"
       >
-        Export myNewsletter
-      </a>
-
-      <div id="content">
-        {appContext.elements?.map((element) => (
-          <div key={element.id}>{element.component}</div>
-        ))}
-      </div>
+        Export
+      </ExportButton>
     </Wrapper>
   );
 };
