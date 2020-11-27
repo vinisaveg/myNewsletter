@@ -10,3 +10,9 @@ export const Wrapper = styled.div`
     padding: 20px 0px;
   }
 `;
+
+export const Title = styled.h1`
+  color: white;
+  font-size: 36px;
+  margin: 60px 0px;
+`;

@@ -9,16 +9,14 @@ interface ButtonProps {
 }
 
 export const Button = styled.button<ButtonProps>`
-  padding: ${(props) => props.padding?.join(" ") || 0};
+  padding: 10px 24px;
   margin: ${(props) => props.margin?.join(" " || 0)};
   color: ${(props) => props.color};
   background-color: ${(props) => props.bgColor || "#222222"};
   box-sizing: border-box;
   width: 25%;
-  height: 31px;
   text-align: center;
   font-size: 16px;
-  line-height: 30px;
   border-radius: 6px;
   border: none;
   text-decoration: none;

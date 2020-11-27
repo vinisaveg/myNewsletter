@@ -16,15 +16,15 @@ const Hero: FunctionComponent<HeroProps> = ({ link, copy, subCopy, id }) => {
       <a href={link}>
         <img
           id={id}
-          src="https://avatarfiles.alphacoders.com/228/228143.jpg"
-          alt="Rick"
-          className="image"
+          src="https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=427&w=640"
+          alt="Default"
+          className="hero-image"
         />
       </a>
 
-      <p>{copy}</p>
+      <p className="hero-copy">{copy}</p>
 
-      <p>{subCopy}</p>
+      <p className="hero-sub-copy">{subCopy}</p>
     </div>
   );
 };

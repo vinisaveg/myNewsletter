@@ -1,3 +1,11 @@
+/* Newsletter CSS gathered in here */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+* {
+    font-family: 'Lato', sans-serif;
+}
+
+/* HERO CSS */
 .hero {
     position: relative;
     width: 640px;
@@ -48,3 +56,4 @@
 
     }
 }
+/* HERO CSS */
