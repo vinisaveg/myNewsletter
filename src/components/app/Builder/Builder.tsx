@@ -2,10 +2,12 @@ import React, { FunctionComponent, useState } from "react";
 
 import { AppContext, InitialAppContext } from "../../../context/context";
 
-import { Wrapper } from "./styles";
+import { Title, Wrapper } from "./styles";
 
+import BaseInformation from "../BaseInformation/BaseInformation";
 import LayoutSelection from "../LayoutSelection/LayoutSelection";
-import Info from "../Info/Info";
+import LayoutForm from "../LayoutForm/LayoutForm";
+import ActionButtons from "../ActionButtons/ActionButtons";
 
 const Builder: FunctionComponent = () => {
   const appContext = useState(InitialAppContext);
@@ -13,12 +15,18 @@ const Builder: FunctionComponent = () => {
   return (
     <AppContext.Provider value={appContext}>
       <Wrapper className="App">
-        <h1 style={{ color: "white" }}>Hello myNewsletter!</h1>
+        <Title>Hello myNewsletter!</Title>
 
-        <Info />
+        <BaseInformation />
 
         <LayoutSelection />
+
+        <LayoutForm />
+
+        <ActionButtons />
       </Wrapper>
+
+      <h2>CONTENT PREVIEW GOES HERE</h2>
     </AppContext.Provider>
   );
 };

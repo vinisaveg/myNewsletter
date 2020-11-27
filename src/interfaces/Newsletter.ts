@@ -4,8 +4,8 @@ export type Newsletter = {
   title: string;
   snippet: string;
   imagesFolderPath: string;
-  content?: string;
   elements: Array<Element>;
+  content?: string;
   currentElement: string;
-  currentElementOptions?: any;
+  currentElementOptions?: any; // set a better type
 };

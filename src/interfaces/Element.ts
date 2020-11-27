@@ -3,6 +3,6 @@ import { ReactElement } from "react";
 export type Element = {
   id: string;
   name: string;
-  element?: ReactElement;
+  component?: ReactElement;
   imageName?: string;
 };

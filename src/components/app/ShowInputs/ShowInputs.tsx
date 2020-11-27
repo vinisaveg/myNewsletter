@@ -9,18 +9,23 @@ import React, {
 import { AppContext } from "../../../context/context";
 import { Element } from "../../../interfaces/Element";
 import layouts from "../../../data/layouts";
+import { Input, Wrapper } from "./styles";
+import { Button } from "../../../styles/shared/Button";
 interface ShowInputsProps {
-  selectedLayout: string;
+  currentElementSelected: string;
 }
 
-const ShowInputs: FunctionComponent<ShowInputsProps> = ({ selectedLayout }) => {
+const ShowInputs: FunctionComponent<ShowInputsProps> = ({
+  currentElementSelected,
+}) => {
   const [appContext, setAppContext] = useContext(AppContext);
+  // Set a type to formikInitialValues
   const [initialValuesFormik, setInitialValuesFormik] = useState<any>({});
   const [layoutKeys, setLayoutKeys] = useState<Array<string>>([]);
 
   useEffect(() => {
     const foundLayout = layouts.find(
-      (layout) => layout.name === selectedLayout
+      (layout) => layout.name === currentElementSelected
     );
 
     if (foundLayout) {
@@ -36,32 +41,32 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({ selectedLayout }) => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedLayout]);
+  }, [currentElementSelected]);
 
   // Build new formik with content from initialValuesFormik data
   const formik = useFormik({
     initialValues: initialValuesFormik,
     enableReinitialize: true,
-    onSubmit: (values) => setValues(values),
+    onSubmit: (formikValues) => setValues(formikValues),
   });
 
-  // Set into context the actual context + the current Element Options from inputs
-  const setValues = (values: any) => {
+  // Set into context the current Element Options from inputs
+  const setValues = (formikValues: any) => {
     const layout = layouts.find(
       (layout) => (layout.name = appContext.currentElement)
     );
 
-    const elementOptions = values;
+    const newElementOptions = formikValues;
 
     let newElementId = (Math.random() * 1000000).toString();
 
-    elementOptions.id = newElementId;
+    newElementOptions.id = newElementId;
 
     let newElement: Element = {
       id: newElementId,
       name: appContext.currentElement,
-      imageName: elementOptions.imageName ? elementOptions.imageName : "",
-      element: layout?.element(elementOptions),
+      imageName: newElementOptions.imageName ? newElementOptions.imageName : "",
+      component: layout?.element(newElementOptions),
     };
 
     let elements = appContext.elements;
@@ -69,19 +74,18 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({ selectedLayout }) => {
     setAppContext({
       ...appContext,
       elements: [...elements, newElement],
-      currentElement: selectedLayout,
-      currentElementOptions: elementOptions,
+      currentElement: currentElementSelected,
+      currentElementOptions: newElementOptions,
     });
   };
 
   // For each field needed, there is a Input Field
   if (layoutKeys) {
     return (
-      <form onSubmit={formik.handleSubmit}>
+      <Wrapper onSubmit={formik.handleSubmit}>
         {layoutKeys.map((key) => (
-          <input
+          <Input
             onChange={formik.handleChange}
-            // value={formik.values[key]}
             key={key}
             id={key}
             name={key}
@@ -90,8 +94,15 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({ selectedLayout }) => {
           />
         ))}
 
-        <button type="submit">Add</button>
-      </form>
+        <Button
+          type="submit"
+          margin={["0px", "0px", "0px", "10px"]}
+          color="white"
+          bgColor="#f5476a;"
+        >
+          Add
+        </Button>
+      </Wrapper>
     );
   } else {
     return null;

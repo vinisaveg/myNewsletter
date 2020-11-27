@@ -1,6 +1,7 @@
 import Hero from "../components/layouts/Hero/Hero.component";
 import React from "react";
 
+// Set a dynamic type to the layouts
 const data = [
   {
     name: "hero",

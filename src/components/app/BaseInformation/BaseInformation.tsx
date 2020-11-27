@@ -6,7 +6,7 @@ import { AppContext } from "../../../context/context";
 import { Button } from "../../../styles/shared/Button";
 import { Input, Wrapper } from "./styles";
 
-const Info: FunctionComponent = () => {
+const BaseInformation: FunctionComponent = () => {
   const [appContext, setAppContext] = useContext(AppContext);
 
   const formik = useFormik({
@@ -16,7 +16,7 @@ const Info: FunctionComponent = () => {
       imagesFolderPath: "",
     },
     onSubmit: (values) => {
-      setAppContext({ ...appContext, ...values, content: "<Newsletter />" });
+      setAppContext({ ...appContext, ...values });
     },
   });
 
@@ -59,4 +59,4 @@ const Info: FunctionComponent = () => {
   );
 };
 
-export default Info;
+export default BaseInformation;

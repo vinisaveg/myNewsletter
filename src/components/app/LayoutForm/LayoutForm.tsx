@@ -1,20 +1,21 @@
-import React, { FunctionComponent } from "react";
+import React, { FunctionComponent, useContext } from "react";
 
 import { Wrapper } from "./styles";
 
 import ShowInputs from "../ShowInputs/ShowInputs";
+import { AppContext } from "../../../context/context";
 
-interface LayoutFormProps {
-  selectedLayout: string;
-}
+interface LayoutFormProps {}
 
-const LayoutForm: FunctionComponent<LayoutFormProps> = ({ selectedLayout }) => {
-  if (selectedLayout) {
+const LayoutForm: FunctionComponent<LayoutFormProps> = () => {
+  const [appContext] = useContext(AppContext);
+
+  if (appContext.currentElement) {
     return (
       <Wrapper>
-        <h1 style={{ color: "white" }}>Layout: {selectedLayout}</h1>
+        <h1 style={{ color: "white" }}>Layout: {appContext.currentElement}</h1>
 
-        <ShowInputs selectedLayout={selectedLayout} />
+        <ShowInputs currentElementSelected={appContext.currentElement} />
       </Wrapper>
     );
   } else {
