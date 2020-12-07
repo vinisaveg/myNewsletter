@@ -29,6 +29,8 @@ const ActionButtons: FunctionComponent<ActionButtonsProps> = () => {
         appContext.elements
       );
 
+      // Zip the html & images and set the .zip to download.
+
       // set href to download the html file
       setNewsletterContent(pageWithUpdatedPaths.documentElement);
 
@@ -50,7 +52,7 @@ const ActionButtons: FunctionComponent<ActionButtonsProps> = () => {
       <ExportButton
         download="newsletter.html"
         target="_blank"
-        href={`data:text/html, ${newsletterContent?.innerHTML}`}
+        href={`data:, ${newsletterContent?.innerHTML}`}
         id="buildBtn"
         rel="noreferrer"
       >
