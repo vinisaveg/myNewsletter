@@ -1,5 +1,5 @@
-import Hero from "../components/layouts/Hero/Hero.component";
 import React from "react";
+import Hero from "../components/layouts/Hero/Hero.component";
 
 // Set a dynamic type to the layouts
 const data = [

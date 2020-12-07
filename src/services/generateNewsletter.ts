@@ -18,7 +18,7 @@ export const generateNewsletter = (content: string): Promise<Document> => {
         //insert the content from ui inside the new div (body)
         body.innerHTML = content;
 
-        // Maybe I'll need to insert the minified css in here :thinking:
+        // I'll need to insert the minified css in here :thinking:
 
         //checks content and append into the documment inside #newsletter div
         if (content) {
