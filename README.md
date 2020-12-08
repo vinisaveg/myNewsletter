@@ -2,6 +2,8 @@
 
 This project was built to help devs and non-devs to create awesome newsletters.
 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/vinisaveg/myNewsletter?color=%23f5476a)
+
 ## Current state :calendar:
 
 The app is in it's first version. There is still improvements to be released.
@@ -14,7 +16,7 @@ Download / Clone this repository:
 
 ```
 
-    git clone https://github.com/vinisaveg/mynewsletter.git
+    git clone https://github.com/vinisaveg/myNewsletter.git
 
 ```
 
