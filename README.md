@@ -42,7 +42,6 @@ The app is designed in a way that allows you to create your newsletter by only f
 
 The only deal is that, you will need to create a layout as a Component, and add it to a layout data file, so you can later on, add that personalized component to the newsletter document. It will need a few configuration, but once you have it, you will be able to create lots of newsletters based on your layout components.
 
-
 ## Usage (non-devs) :notebook:
 
 Once the app is running properly, you can save your initial information, which is:
@@ -63,11 +62,11 @@ If you are happy with the results, hit Build and open the downloaded file. :smil
 
 ## Creating layout components (devs) :wrench:
 
-Inside the layouts folder, you can start creating your custom layout component. You may see the Hero layout I created as example.
+Inside the _layouts_ folder, you can start creating your custom layout component. You may see the Hero layout I created as example.
 
-To be able to use the component, you will need to add it to the layouts.ts file, inside data folder. There is where every component will need to be, so you can call use it inside your newsletter.
+To be able to use the component, you will need to add it to the _layouts.ts_ file, inside the _data_ folder. There is where every component will need to be, so you can use it inside your newsletter.
 
-It will have a name, that will be passed to the LayoutSelection, all the fields needed to it work properly - based on the Component -, and also the Component itself, as a function that receives it's props as param.
+It will have a name, that will be passed to the _LayoutSelection_, all the fields needed to it work properly - based on the Component -, and also the Component itself, as a function that receives it's props as params.
 
 Create a component as you like
 
@@ -94,7 +93,7 @@ export default CustomComponent;
 
 ```
 
-Add your custom component layout to the data file
+Add your custom component layout to the _data_ file
 
 ```Typescript
 
@@ -113,7 +112,7 @@ Add your custom component layout to the data file
 
 ```
 
-Also insert it to the LayoutSelection, so you can have it on the app.
+Also insert it to the _LayoutSelection_, so you can have it on the app.
 
 ```TSX
 
@@ -122,7 +121,7 @@ Also insert it to the LayoutSelection, so you can have it on the app.
 
 ```
 
-You can also import fonts, insert css files or change the base HTML, that sits inside the public folder.
+You can also import fonts, insert css files or change the base HTML, that sits inside the _public_ folder.
 
 Inside the services folder, we have three files:
 
