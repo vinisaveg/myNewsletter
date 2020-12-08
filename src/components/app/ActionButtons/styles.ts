@@ -14,28 +14,3 @@ export const Wrapper = styled.div`
     width: 90%;
   }
 `;
-
-export const ExportButton = styled.a`
-  padding: 10px 24px;
-  margin: 12px !important;
-  color: white;
-  background-color: #f5476a;
-  box-sizing: border-box;
-  width: 25%;
-  text-align: center;
-  font-size: 16px;
-  border-radius: 6px;
-  border: none;
-  text-decoration: none;
-  cursor: pointer;
-  transition: 150ms opacity ease;
-
-  &&:hover {
-    opacity: 0.9;
-  }
-
-  @media screen and (max-width: 850px) {
-    width: 100%;
-    margin: 0;
-  }
-`;

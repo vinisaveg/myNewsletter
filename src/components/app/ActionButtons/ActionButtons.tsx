@@ -1,17 +1,17 @@
-import React, { FunctionComponent, useContext, useState } from "react";
+import React, { FunctionComponent, useContext } from "react";
 import { AppContext } from "../../../context/context";
 
-import { ExportButton, Wrapper } from "./styles";
+import { Wrapper } from "./styles";
+import { Button } from "../../../styles/shared/Button";
 
 import { generateNewsletter } from "../../../services/generateNewsletter";
 import { handleImagePaths } from "../../../services/handleImagePaths";
-import { Button } from "../../../styles/shared/Button";
+import { buildAndShip } from "../../../services/buildAndShip";
 
 interface ActionButtonsProps {}
 
 const ActionButtons: FunctionComponent<ActionButtonsProps> = () => {
   const [appContext] = useContext(AppContext);
-  const [newsletterContent, setNewsletterContent] = useState<HTMLElement>();
 
   const build = async () => {
     //get inserted content from UI
@@ -29,37 +29,29 @@ const ActionButtons: FunctionComponent<ActionButtonsProps> = () => {
         appContext.elements
       );
 
-      // Zip the html & images and set the .zip to download.
-
-      // set href to download the html file
-      setNewsletterContent(pageWithUpdatedPaths.documentElement);
+      // build a blob as html & download it with FileSaver
+      buildAndShip(pageWithUpdatedPaths);
 
       //DONE! -> newsletter.html
     }
   };
 
-  return (
-    <Wrapper>
-      <Button
-        margin={["0px", "0px", "0px", "0px"]}
-        color="white"
-        bgColor="#f5476a;"
-        onClick={build}
-      >
-        Build
-      </Button>
-
-      <ExportButton
-        download="newsletter.html"
-        target="_blank"
-        href={`data:, ${newsletterContent?.innerHTML}`}
-        id="buildBtn"
-        rel="noreferrer"
-      >
-        Export
-      </ExportButton>
-    </Wrapper>
-  );
+  if (appContext.elements.length > 0) {
+    return (
+      <Wrapper>
+        <Button
+          margin={["0px", "0px", "0px", "0px"]}
+          color="white"
+          bgColor="#f5476a;"
+          onClick={build}
+        >
+          Build
+        </Button>
+      </Wrapper>
+    );
+  } else {
+    return null;
+  }
 };
 
 export default ActionButtons;
