@@ -11,13 +11,8 @@ import { Element } from "../../../interfaces/Element";
 import layouts from "../../../data/layouts";
 import { Input, Wrapper } from "./styles";
 import { Button } from "../../../styles/shared/Button";
-interface ShowInputsProps {
-  currentElementSelected: string;
-}
 
-const ShowInputs: FunctionComponent<ShowInputsProps> = ({
-  currentElementSelected,
-}) => {
+const ShowInputs: FunctionComponent = () => {
   const [appContext, setAppContext] = useContext(AppContext);
   // Set a type to formikInitialValues
   const [initialValuesFormik, setInitialValuesFormik] = useState<any>({});
@@ -25,7 +20,7 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({
 
   useEffect(() => {
     const foundLayout = layouts.find(
-      (layout) => layout.name === currentElementSelected
+      (layout) => layout.name === appContext.currentElement
     );
 
     if (foundLayout) {
@@ -41,7 +36,7 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentElementSelected]);
+  }, [appContext.currentElement]);
 
   // Build new formik with content from initialValuesFormik data
   const formik = useFormik({
@@ -53,12 +48,12 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({
   // Set into context the current Element Options from inputs
   const setValues = (formikValues: any) => {
     const layout = layouts.find(
-      (layout) => (layout.name = appContext.currentElement)
+      (layout) => layout.name === appContext.currentElement
     );
 
-    const newElementOptions = formikValues;
+    let newElementOptions = formikValues;
 
-    let newElementId = (Math.random() * 1000000).toString();
+    let newElementId = (Math.random() * 100000).toString();
 
     newElementOptions.id = newElementId;
 
@@ -74,7 +69,7 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({
     setAppContext({
       ...appContext,
       elements: [...elements, newElement],
-      currentElement: currentElementSelected,
+      currentElement: appContext.currentElement,
       currentElementOptions: newElementOptions,
     });
   };
@@ -96,7 +91,7 @@ const ShowInputs: FunctionComponent<ShowInputsProps> = ({
 
         <Button
           type="submit"
-          margin={["0px", "0px", "0px", "10px"]}
+          margin={["0px", "10px", "0px", "10px"]}
           color="white"
           bgColor="#f5476a;"
         >

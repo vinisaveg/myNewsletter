@@ -29,6 +29,6 @@ export const Button = styled.button<ButtonProps>`
 
   @media screen and (max-width: 850px) {
     width: 100%;
-    margin: 0;
+    margin: 10px 0px;
   }
 `;

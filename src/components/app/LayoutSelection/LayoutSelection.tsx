@@ -21,10 +21,9 @@ const LayoutSelection: FunctionComponent = () => {
           <Option disabled value="default">
             Select a layout
           </Option>
+          <Option value="buttonPrimary">Button Primary</Option>
           <Option value="hero">Hero</Option>
-          <Option value="imageCenter">Image Center</Option>
-          <Option value="4ProductsRow">4 Products Row</Option>
-          <Option value="horizontalImage">Horizontal Image</Option>
+          <Option value="products">4 Products Row</Option>
         </Select>
       </Wrapper>
     </>

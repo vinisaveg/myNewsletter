@@ -64,7 +64,7 @@ If you are happy with the results, hit Build and open the downloaded file. :smil
 
 ## Creating layout components (devs) :wrench:
 
-Inside the _layouts_ folder, you can start creating your custom layout component. You may see the Hero layout I created as example.
+Inside the _layouts_ folder, you can start creating your custom layout component. You may see the Hero, and the Button layout I created as example.
 
 To be able to use the component, you will need to add it to the _layouts.ts_ file, inside the _data_ folder. There is where every component will need to be, so you can use it inside your newsletter.
 
@@ -99,7 +99,7 @@ Add your custom component layout to the _data_ file
 
 ```Typescript
 
-    const data = [
+    const data: Array<Layout> = [
       {
         name: "customComponentName",
         fields: {
@@ -130,7 +130,6 @@ Inside the services folder, we have three files:
 - handleImagePaths: Will replace the images src to the one given in the input field.
 - generateNewsletter: Receives the newsletter content as a String and returns a Document.
 - buildAndShip: Creates a blob with the newsletter Document and fires a download action.
-
 
 ## Contributing :+1:
 
