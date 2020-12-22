@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useContext } from "react";
+import React, { FunctionComponent, useContext, useState } from "react";
 import { useFormik } from "formik";
 
 import { AppContext } from "../../../context/context";
@@ -8,6 +8,7 @@ import { Input, Wrapper } from "./styles";
 
 const BaseInformation: FunctionComponent = () => {
   const [appContext, setAppContext] = useContext(AppContext);
+  const [infoSaved, setInfoSaved] = useState(false);
 
   const formik = useFormik({
     initialValues: {
@@ -17,8 +18,24 @@ const BaseInformation: FunctionComponent = () => {
     },
     onSubmit: (values) => {
       setAppContext({ ...appContext, ...values });
+      setInfoSaved(true);
     },
   });
+
+  const resetInfo = () => {
+    setInfoSaved(false);
+
+    setAppContext({
+      ...appContext,
+      title: "",
+      snippet: "",
+      imagesFolderPath: "",
+    });
+
+    formik.values.title = "";
+    formik.values.snippet = "";
+    formik.values.imagesFolderPath = "";
+  };
 
   return (
     <Wrapper onSubmit={formik.handleSubmit}>
@@ -29,6 +46,7 @@ const BaseInformation: FunctionComponent = () => {
         placeholder="Title"
         onChange={formik.handleChange}
         value={formik.values.title}
+        disabled={infoSaved}
       />
       <Input
         id="snippet"
@@ -37,6 +55,7 @@ const BaseInformation: FunctionComponent = () => {
         placeholder="Snippet"
         onChange={formik.handleChange}
         value={formik.values.snippet}
+        disabled={infoSaved}
       />
       <Input
         id="imagesFolderPath"
@@ -45,7 +64,18 @@ const BaseInformation: FunctionComponent = () => {
         placeholder="Image folder path"
         onChange={formik.handleChange}
         value={formik.values.imagesFolderPath}
+        disabled={infoSaved}
       />
+
+      <Button
+        type="button"
+        margin={["0px", "0px", "0px", "10px"]}
+        color="white"
+        bgColor="#74898a;"
+        onClick={resetInfo}
+      >
+        Reset
+      </Button>
 
       <Button
         type="submit"

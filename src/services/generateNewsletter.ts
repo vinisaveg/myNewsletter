@@ -1,7 +1,11 @@
 const htmlFile = "http://localhost:3000/newsletter.html";
 
 // Function will receive a content (string)
-export const generateNewsletter = (content: string): Promise<Document> => {
+export const generateNewsletter = (
+  title: string,
+  snippet: string,
+  content: string
+): Promise<Document> => {
   return new Promise((resolve, reject) => {
     // Fetch the newsletter Document
     fetch(htmlFile)
@@ -11,6 +15,15 @@ export const generateNewsletter = (content: string): Promise<Document> => {
 
         //parse text response to Document DOM Object
         let newsletter = parser.parseFromString(response, "text/html");
+
+        //inset the Newsletter title
+        newsletter.title = title;
+
+        // create a span with the Newsletter Snippet and add it to the Document
+        let snippetSpan = document.createElement("span");
+        snippetSpan.innerHTML = snippet;
+
+        newsletter.querySelector("#snippet")?.appendChild(snippetSpan);
 
         //create a div to insert the content passed, which was grabbed from ui
         let body = document.createElement("div");

@@ -15,7 +15,7 @@ const LayoutForm: FunctionComponent<LayoutFormProps> = () => {
       <Wrapper>
         <h1 style={{ color: "white" }}>Layout: {appContext.currentElement}</h1>
 
-        <ShowInputs currentElementSelected={appContext.currentElement} />
+        <ShowInputs />
       </Wrapper>
     );
   } else {

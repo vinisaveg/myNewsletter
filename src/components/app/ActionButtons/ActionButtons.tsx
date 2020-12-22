@@ -11,7 +11,7 @@ import { buildAndShip } from "../../../services/buildAndShip";
 interface ActionButtonsProps {}
 
 const ActionButtons: FunctionComponent<ActionButtonsProps> = () => {
-  const [appContext] = useContext(AppContext);
+  const [appContext, setAppContext] = useContext(AppContext);
 
   const build = async () => {
     //get inserted content from UI
@@ -19,8 +19,12 @@ const ActionButtons: FunctionComponent<ActionButtonsProps> = () => {
 
     if (content) {
       //send content fetched from ui
-      let page = await generateNewsletter(content);
       // generate function returns the full document with the content appended
+      let page = await generateNewsletter(
+        appContext.title,
+        appContext.snippet,
+        content
+      );
 
       // Handle image paths to be ready for export
       let pageWithUpdatedPaths = handleImagePaths(
@@ -36,9 +40,29 @@ const ActionButtons: FunctionComponent<ActionButtonsProps> = () => {
     }
   };
 
+  const clean = () => {
+    setAppContext({
+      title: "",
+      snippet: "",
+      imagesFolderPath: "",
+      content: "",
+      elements: [],
+      currentElement: "",
+    });
+  };
+
   if (appContext.elements.length > 0) {
     return (
       <Wrapper>
+        <Button
+          margin={["0px", "20px", "0px", "0px"]}
+          color="white"
+          bgColor="#74898a;"
+          onClick={clean}
+        >
+          Clean
+        </Button>
+
         <Button
           margin={["0px", "0px", "0px", "0px"]}
           color="white"
