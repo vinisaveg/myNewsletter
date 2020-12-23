@@ -2,7 +2,7 @@ import React from "react";
 
 import ButtonPrimary from "../components/layouts/ButtonPrimary/ButtonPrimary.component";
 import Hero from "../components/layouts/Hero/Hero.component";
-import Products from "../components/layouts/Products/Products.component";
+import Product from "../components/layouts/Product/Product.component";
 
 import { Layout } from "../interfaces/Layout";
 
@@ -26,22 +26,22 @@ const data: Array<Layout> = [
     element: (props: any) => <Hero {...props} />,
   },
   {
-    name: "products",
+    name: "product",
     fields: {
-      product1Link: "",
-      product1Description: "",
-      product1Image: "",
+      productLink: "",
+      productImage: "",
+      productDescription: "",
       product2Link: "",
-      product2Description: "",
       product2Image: "",
+      product2Description: "",
       product3Link: "",
-      product3Description: "",
       product3Image: "",
+      product3Description: "",
       product4Link: "",
-      product4Description: "",
       product4Image: "",
+      product4Description: "",
     },
-    element: (props: any) => <Products {...props} />,
+    element: (props: any) => <Product {...props} />,
   },
 ];
 

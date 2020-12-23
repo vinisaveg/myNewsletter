@@ -23,7 +23,7 @@ const LayoutSelection: FunctionComponent = () => {
           </Option>
           <Option value="buttonPrimary">Button Primary</Option>
           <Option value="hero">Hero</Option>
-          <Option value="products">4 Products Row</Option>
+          <Option value="product">4 Products Row</Option>
         </Select>
       </Wrapper>
     </>

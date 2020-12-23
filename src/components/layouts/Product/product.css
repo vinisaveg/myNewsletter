@@ -10,6 +10,7 @@
     align-items: center;
     justify-content: space-around;
     margin: 0 auto;
+    text-align: center;
 }
 
 .product {
@@ -23,8 +24,10 @@
 
 .product-description {
     display: block;
+    min-height: 35px;
     margin-top: 10px;
     font-size: 14px;
+    text-align: center;
 }
 
 @media screen and (max-width: 720px) {

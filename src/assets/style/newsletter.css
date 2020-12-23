@@ -103,6 +103,7 @@ body {
     align-items: center;
     justify-content: space-around;
     margin: 0 auto;
+    text-align: center;
 }
 
 .product {
@@ -112,12 +113,14 @@ body {
 
 .product-image {
     width: 150px;
+    height: 150px;
 }
 
 .product-description {
     display: block;
     margin-top: 10px;
     font-size: 14px;
+    text-align: center;
 }
 
 @media screen and (max-width: 720px) {
