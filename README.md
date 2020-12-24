@@ -1,7 +1,7 @@
 # myNewsletter
 
-This project was built to help devs and non-devs to create awesome newsletters.
-
+This project was built to help devs and non-devs create awesome newsletters.
+ 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/vinisaveg/myNewsletter?color=%23f5476a)
 
 ## Current state :calendar:
