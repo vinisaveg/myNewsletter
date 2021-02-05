@@ -1,3 +1,5 @@
+import { cleanHTML } from "./cleanHTML";
+
 const htmlFile = "http://localhost:3000/newsletter.html";
 
 // Function will receive a content (string)
@@ -30,6 +32,9 @@ export const generateNewsletter = (
 
         //insert the content from ui inside the new div (body)
         body.innerHTML = content;
+
+        // Cleaning the HTML content
+        cleanHTML(body);
 
         // I'll need to insert the minified css in here :thinking:
 
