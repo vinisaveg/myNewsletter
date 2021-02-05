@@ -27,6 +27,7 @@ const Preview: FunctionComponent = () => {
           {element.component}
 
           <DeleteLayoutButton
+            className="delete-component"
             onClick={() => handleDeleteLayout(element.id)}
             color="white"
             bgColor="#f5476a;"
