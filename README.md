@@ -130,6 +130,7 @@ Inside the services folder, we have three files:
 - handleImagePaths: Will replace the images src to the one given in the input field.
 - generateNewsletter: Receives the newsletter content as a String and returns a Document.
 - buildAndShip: Creates a blob with the newsletter Document and fires a download action.
+- cleanHTML - Removes all unecessary components -> Buttons, Divs or Layers from the HTML.
 
 ## Contributing :+1:
 

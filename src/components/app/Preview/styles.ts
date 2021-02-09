@@ -22,3 +22,8 @@ export const DeleteLayoutButton = styled(Button)`
   max-width: 80px;
   padding: 10px;
 `;
+
+export const UpdateLayoutButton = styled(DeleteLayoutButton)`
+  right: 100px;
+  top: 60px;
+`;
