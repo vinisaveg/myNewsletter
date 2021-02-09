@@ -9,6 +9,7 @@ export const InitialAppContext: Newsletter = {
   content: "",
   elements: [],
   currentElement: "",
+  isUpdating: false,
 };
 
 export const AppContext = createContext<

@@ -1,8 +1,9 @@
 import React, { FunctionComponent, useContext } from "react";
 
 import { AppContext } from "../../../context/context";
+import data from "../../../data/layouts";
 
-import { Wrapper, DeleteLayoutButton } from "./styles";
+import { Wrapper, DeleteLayoutButton, UpdateLayoutButton } from "./styles";
 
 const Preview: FunctionComponent = () => {
   const [appContext, setAppContext] = useContext(AppContext);
@@ -17,8 +18,25 @@ const Preview: FunctionComponent = () => {
     }
   };
 
-  // TODO
-  // const handleUpdateLayout = () => {};
+  const handleShowUpdateModal = (id: string) => {
+    // Find element Index to update
+    let elementIndexToUpdate = appContext.elements.findIndex(
+      (element) => element.id === id
+    );
+
+    // Find the element to update
+    let elementNameToUpdate = appContext.elements[elementIndexToUpdate].name;
+
+    // Grab the correspondig Layout
+    let layoutToUpdate = data.find(
+      (layout) => layout.name === elementNameToUpdate
+    );
+
+    // TODO
+    // Set isUpdating to true inside the context
+    // Set updatingId inside the context
+    // Set the fields to be updated inside the context (layoutToUpdate?.fields)
+  };
 
   return (
     <Wrapper id="content">
@@ -34,6 +52,15 @@ const Preview: FunctionComponent = () => {
           >
             Remove
           </DeleteLayoutButton>
+
+          <UpdateLayoutButton
+            className="delete-component"
+            onClick={() => handleShowUpdateModal(element.id)}
+            color="#222222"
+            bgColor="#f2ff80;"
+          >
+            Update
+          </UpdateLayoutButton>
         </div>
       ))}
     </Wrapper>
