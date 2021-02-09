@@ -8,4 +8,5 @@ export type Newsletter = {
   content?: string;
   currentElement: string;
   currentElementOptions?: any; // set a better type
+  isUpdating: boolean;
 };

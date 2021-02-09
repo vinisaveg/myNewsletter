@@ -9,6 +9,7 @@ import LayoutSelection from "../LayoutSelection/LayoutSelection";
 import LayoutForm from "../LayoutForm/LayoutForm";
 import ActionButtons from "../ActionButtons/ActionButtons";
 import Preview from "../Preview/Preview";
+import UpdateModal from "../UpdateModal/UpdateModal";
 
 const Builder: FunctionComponent = () => {
   const appContext = useState(InitialAppContext);
@@ -26,6 +27,8 @@ const Builder: FunctionComponent = () => {
 
         <ActionButtons />
       </Wrapper>
+
+      <UpdateModal />
 
       <Preview />
     </AppContext.Provider>

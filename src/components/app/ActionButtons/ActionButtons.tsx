@@ -48,6 +48,7 @@ const ActionButtons: FunctionComponent<ActionButtonsProps> = () => {
       content: "",
       elements: [],
       currentElement: "",
+      isUpdating: false,
     });
   };
 
