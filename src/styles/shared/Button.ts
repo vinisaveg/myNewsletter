@@ -14,7 +14,7 @@ export const Button = styled.button<ButtonProps>`
   color: ${(props) => props.color};
   background-color: ${(props) => props.bgColor || "#222222"};
   box-sizing: border-box;
-  width: 25%;
+  width: ${(props) => props.width || "25%"};
   text-align: center;
   font-size: 16px;
   border-radius: 6px;
