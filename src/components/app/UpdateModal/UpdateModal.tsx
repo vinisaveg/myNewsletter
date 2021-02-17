@@ -81,6 +81,7 @@ const UpdateModal: FunctionComponent = () => {
 
         <ButtonWrapper>
           <Button
+            width="50%"
             type="submit"
             margin={["10px", "10px", "0px", "0px"]}
             color="white"
@@ -90,6 +91,7 @@ const UpdateModal: FunctionComponent = () => {
           </Button>
 
           <Button
+            width="50%"
             type="submit"
             margin={["10px", "0px", "0px", "10px"]}
             color="white"
