@@ -16,8 +16,6 @@ const UpdateModal: FunctionComponent = () => {
   const [initialValuesFormik, setInitialValuesFormik] = useState<any>({});
 
   useEffect(() => {
-    console.log("Updating element has changed");
-
     // Set the Formik Object Type to handle the inputs fields values to update
     appContext.updatingLayoutFields.forEach((key) => {
       setInitialValuesFormik({ [key]: "", ...initialValuesFormik });
@@ -33,35 +31,42 @@ const UpdateModal: FunctionComponent = () => {
   });
 
   const handleUpdateElement = (formikValues: any) => {
-    // Grab the new values from the inputs
-    console.log(formikValues);
+    // Find element Index to update
+    let elementIndexToUpdate = appContext.elements.findIndex(
+      (element) => element.id === appContext.updatingId
+    );
 
-    // // Find element Index to update
-    // let elementIndexToUpdate = appContext.elements.findIndex(
-    //   (element) => element.id === "appContext.updatingId"
-    // );
+    // Find the element name to update
+    let elementNameToUpdate = appContext.elements[elementIndexToUpdate].name;
 
-    // // Find the element name to update
-    // let elementNameToUpdate = appContext.elements[elementIndexToUpdate].name;
+    // Grab the correspondig Layout
+    let layoutToUpdate = data.find(
+      (layout) => layout.name === elementNameToUpdate
+    );
 
-    // // Grab the correspondig Layout
-    // let layoutToUpdate = data.find(
-    //   (layout) => layout.name === elementNameToUpdate
-    // );
+    // Return the new element with the fresh props from the inputs
+    if (layoutToUpdate) {
+      // Get the new values from the inputs
+      let newElementProps = formikValues;
 
-    // // Return the new element with the fresh props from the inputs
-    // let updatedElement = layoutToUpdate?.element({ props: "" });
+      newElementProps.id = appContext.updatingId;
 
-    // // Create a new Elements Array to set the updated element
-    // let updatedElementsArray = appContext.elements;
+      // Create the element with the new props
+      let updatedElement = layoutToUpdate.element(newElementProps);
 
-    // // Set the Updated Component into the new Elements array
-    // if (updatedElement) {
-    //   updatedElementsArray[elementIndexToUpdate].component = updatedElement;
+      // Create a new Elements Array to set the updated element
+      let updatedElementsArray = appContext.elements;
 
-    //   // Update the Context with the new Elements Array
-    //   setAppContext({ ...appContext, elements: updatedElementsArray });
-    // }
+      // Set the Updated Component into the new Elements array
+      if (updatedElement) {
+        updatedElementsArray[elementIndexToUpdate].component = updatedElement;
+
+        // Update the Context with the new Elements Array
+        setAppContext({ ...appContext, elements: updatedElementsArray });
+
+        handleCloseUpdateModal();
+      }
+    }
   };
 
   const handleCloseUpdateModal = () => {
@@ -71,6 +76,8 @@ const UpdateModal: FunctionComponent = () => {
       updatingId: "",
       updatingLayoutFields: [],
     });
+
+    setInitialValuesFormik({});
   };
 
   // Show the inputs to be updated
