@@ -21,6 +21,10 @@ export const DeleteLayoutButton = styled(Button)`
   z-index: 10;
   max-width: 80px;
   padding: 10px;
+
+  @media screen and (max-width: 850px) {
+    display: none;
+  }
 `;
 
 export const UpdateLayoutButton = styled(DeleteLayoutButton)`
