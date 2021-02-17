@@ -32,10 +32,19 @@ const Preview: FunctionComponent = () => {
       (layout) => layout.name === elementNameToUpdate
     );
 
-    // TODO
-    // Set isUpdating to true inside the context
-    // Set updatingId inside the context
-    // Set the fields to be updated inside the context (layoutToUpdate?.fields)
+    if (layoutToUpdate) {
+      let layoutFields = Object.keys(layoutToUpdate?.fields);
+
+      // Set isUpdating to true inside the context
+      // Set updatingId inside the context
+      // Set the fields to be updated inside the context
+      setAppContext({
+        ...appContext,
+        isUpdating: true,
+        updatingId: id,
+        updatingLayoutFields: layoutFields,
+      });
+    }
   };
 
   return (

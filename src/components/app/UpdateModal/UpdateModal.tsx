@@ -1,10 +1,14 @@
-import React, { FunctionComponent, useContext } from "react";
+import React, { FunctionComponent, useContext, useEffect } from "react";
 
 import { AppContext } from "../../../context/context";
 import data from "../../../data/layouts";
 
 const UpdateModal: FunctionComponent = () => {
   const [appContext, setAppContext] = useContext(AppContext);
+
+  useEffect(() => {
+    console.log("Updating element has changed");
+  }, [appContext.updatingId]);
 
   const handleUpdateElement = () => {
     // Grab the new values from the inputs

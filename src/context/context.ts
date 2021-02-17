@@ -10,6 +10,8 @@ export const InitialAppContext: Newsletter = {
   elements: [],
   currentElement: "",
   isUpdating: false,
+  updatingId: "",
+  updatingLayoutFields: [],
 };
 
 export const AppContext = createContext<
