@@ -64,6 +64,15 @@ const UpdateModal: FunctionComponent = () => {
     // }
   };
 
+  const handleCloseUpdateModal = () => {
+    setAppContext({
+      ...appContext,
+      isUpdating: false,
+      updatingId: "",
+      updatingLayoutFields: [],
+    });
+  };
+
   // Show the inputs to be updated
   if (appContext.isUpdating) {
     return (
@@ -81,6 +90,7 @@ const UpdateModal: FunctionComponent = () => {
 
         <ButtonWrapper>
           <Button
+            onClick={() => handleCloseUpdateModal()}
             width="50%"
             type="submit"
             margin={["10px", "10px", "0px", "0px"]}
