@@ -4,12 +4,17 @@ import { HeroProps } from "./types";
 
 import "./hero.css";
 
-const Hero: FunctionComponent<HeroProps> = ({ link, copy, subCopy, id }) => {
+const Hero: FunctionComponent<HeroProps> = ({
+  link,
+  copy,
+  subCopy,
+  imageName,
+}) => {
   return (
     <div className="hero img-component">
       <a rel="noreferrer" target="_blank" href={link}>
         <img
-          id={id}
+          data-real-src={imageName}
           src="https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=427&w=640"
           alt="Default"
           className="hero-image"
