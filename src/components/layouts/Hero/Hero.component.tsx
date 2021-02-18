@@ -6,7 +6,7 @@ import "./hero.css";
 
 const Hero: FunctionComponent<HeroProps> = ({ link, copy, subCopy, id }) => {
   return (
-    <div className="hero">
+    <div className="hero img-component">
       <a rel="noreferrer" target="_blank" href={link}>
         <img
           id={id}

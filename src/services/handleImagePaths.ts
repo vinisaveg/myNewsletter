@@ -1,5 +1,13 @@
 import { Element } from "../interfaces/Element";
 
+/**
+ * Updates all images with the correct img src path
+ *
+ * @param {Document} page The Newsletter Page Document
+ * @param {string} imageFolderPath The folder where the images sits
+ * @param {Array<Element>} elements The newsletters elements array
+ * @return {Document} The page Document
+ */
 export const handleImagePaths = (
   page: Document,
   imageFolderPath: string,
