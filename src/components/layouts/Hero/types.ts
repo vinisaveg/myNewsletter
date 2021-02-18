@@ -1,7 +1,6 @@
 export interface HeroProps {
-  imagePath?: string;
+  imageName?: string;
   link?: string;
   copy?: string;
   subCopy?: string;
-  id?: string;
 }
