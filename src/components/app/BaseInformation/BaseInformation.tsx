@@ -1,4 +1,9 @@
-import React, { FunctionComponent, useContext, useState } from "react";
+import React, {
+  FunctionComponent,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useFormik } from "formik";
 
 import { AppContext } from "../../../context/context";
@@ -9,21 +14,55 @@ import { Input, Wrapper } from "./styles";
 const BaseInformation: FunctionComponent = () => {
   const [appContext, setAppContext] = useContext(AppContext);
   const [infoSaved, setInfoSaved] = useState(false);
+  const [initialValuesFormik, setInitialValuesFormik] = useState<any>({
+    title: "",
+    snippet: "",
+    imagesFolderPath: "",
+  });
+
+  useEffect(() => {
+    let info = window.localStorage.getItem("myNewsletterInfo");
+
+    if (info) {
+      let infoParsed = JSON.parse(info);
+
+      setInitialValuesFormik({
+        title: infoParsed.title,
+        snippet: infoParsed.snippet,
+        imagesFolderPath: infoParsed.imagesFolderPath,
+      });
+    }
+  }, [appContext]);
 
   const formik = useFormik({
     initialValues: {
-      title: "",
-      snippet: "",
-      imagesFolderPath: "",
+      title: initialValuesFormik.title,
+      snippet: initialValuesFormik.snippet,
+      imagesFolderPath: initialValuesFormik.imagesFolderPath,
     },
+    enableReinitialize: true,
     onSubmit: (values) => {
       setAppContext({ ...appContext, ...values });
+
+      // Set info to Local Storage -> myNewsletterInfo
+      window.localStorage.setItem(
+        "myNewsletterInfo",
+        JSON.stringify({ ...values })
+      );
       setInfoSaved(true);
     },
   });
 
   const resetInfo = () => {
     setInfoSaved(false);
+
+    window.localStorage.setItem("myNewsletterInfo", "");
+
+    setInitialValuesFormik({
+      title: "",
+      snippet: "",
+      imagesFolderPath: "",
+    });
 
     setAppContext({
       ...appContext,
