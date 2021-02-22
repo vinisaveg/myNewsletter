@@ -10,6 +10,7 @@ import LayoutForm from "../LayoutForm/LayoutForm";
 import ActionButtons from "../ActionButtons/ActionButtons";
 import Preview from "../Preview/Preview";
 import UpdateModal from "../UpdateModal/UpdateModal";
+import AppWrapper from "../AppWrapper/AppWrapper";
 
 const Builder: FunctionComponent = () => {
   const appContext = useState(InitialAppContext);
@@ -17,15 +18,17 @@ const Builder: FunctionComponent = () => {
   return (
     <AppContext.Provider value={appContext}>
       <Wrapper className="App">
-        <Title>Hello myNewsletter!</Title>
+        <AppWrapper>
+          <Title>Hello myNewsletter!</Title>
 
-        <BaseInformation />
+          <BaseInformation />
 
-        <LayoutSelection />
+          <LayoutSelection />
 
-        <LayoutForm />
+          <LayoutForm />
 
-        <ActionButtons />
+          <ActionButtons />
+        </AppWrapper>
       </Wrapper>
 
       <UpdateModal />

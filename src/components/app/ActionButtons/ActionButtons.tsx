@@ -18,29 +18,60 @@ const ActionButtons: FunctionComponent<ActionButtonsProps> = () => {
     let content = document.querySelector("#content")?.innerHTML;
 
     if (content) {
-      //send content fetched from ui
-      // generate function returns the full document with the content appended
-      let page = await generateNewsletter(
-        appContext.title,
-        appContext.snippet,
-        content
-      );
+      // Get cached data
+      let cachedInfo = window.localStorage.getItem("myNewsletterInfo");
 
-      // Handle image paths to be ready for export
-      let pageWithUpdatedPaths = handleImagePaths(
-        page,
-        appContext.imagesFolderPath,
-        appContext.elements
-      );
+      if (cachedInfo) {
+        // Parse cached data
+        let parsedCachedInfo = JSON.parse(cachedInfo);
 
-      // build a blob as html & download it with FileSaver
-      buildAndShip(pageWithUpdatedPaths);
+        //send content fetched from ui
+        // generate function returns the full document with the content appended
+        let page = await generateNewsletter(
+          parsedCachedInfo.title,
+          parsedCachedInfo.snippet,
+          content
+        );
 
-      //DONE! -> newsletter.html
+        // Handle image paths to be ready for export
+        let pageWithUpdatedPaths = handleImagePaths(
+          page,
+          parsedCachedInfo.imagesFolderPath || appContext.imagesFolderPath,
+          appContext.elements
+        );
+
+        // build a blob as html & download it with FileSaver
+        buildAndShip(pageWithUpdatedPaths);
+
+        //DONE! -> newsletter.html
+      } else {
+        //send content fetched from ui
+        // generate function returns the full document with the content appended
+        let page = await generateNewsletter(
+          appContext.title,
+          appContext.snippet,
+          content
+        );
+
+        // Handle image paths to be ready for export
+        let pageWithUpdatedPaths = handleImagePaths(
+          page,
+          appContext.imagesFolderPath,
+          appContext.elements
+        );
+
+        // build a blob as html & download it with FileSaver
+        buildAndShip(pageWithUpdatedPaths);
+
+        //DONE! -> newsletter.html
+      }
     }
   };
 
   const clean = () => {
+    // Cleaning App Cache
+    window.localStorage.setItem("myNewsletterElements", "");
+
     setAppContext({
       title: "",
       snippet: "",

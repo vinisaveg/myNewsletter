@@ -66,6 +66,11 @@ const ShowInputs: FunctionComponent = () => {
 
     let elements = appContext.elements;
 
+    window.localStorage.setItem(
+      "myNewsletterElements",
+      JSON.stringify([...elements, newElement])
+    );
+
     setAppContext({
       ...appContext,
       elements: [...elements, newElement],
