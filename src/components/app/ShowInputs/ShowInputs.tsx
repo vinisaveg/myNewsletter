@@ -29,7 +29,7 @@ const ShowInputs: FunctionComponent = () => {
 
       // Set the Formik Object Type to handle the inputs fields values
       layoutKeys.forEach((key) => {
-        setInitialValuesFormik({ [key]: "", ...initialValuesFormik });
+        setInitialValuesFormik({ [key]: "" });
       });
     } else {
       setInitialValuesFormik({});
@@ -74,7 +74,7 @@ const ShowInputs: FunctionComponent = () => {
     setAppContext({
       ...appContext,
       elements: [...elements, newElement],
-      currentElement: appContext.currentElement,
+      currentElement: "",
       currentElementOptions: newElementOptions,
     });
   };
@@ -89,6 +89,7 @@ const ShowInputs: FunctionComponent = () => {
             key={key}
             id={key}
             name={key}
+            value={formik.values.key}
             type="text"
             placeholder={key}
           />

@@ -7,7 +7,11 @@ const LayoutSelection: FunctionComponent = () => {
   const [appContext, setAppContext] = useContext(AppContext);
 
   const updateSelectedLayout = (e: any) => {
-    setAppContext({ ...appContext, currentElement: e.target.value });
+    if (e.target.value === "default") {
+      setAppContext({ ...appContext, currentElement: "" });
+    } else {
+      setAppContext({ ...appContext, currentElement: e.target.value });
+    }
   };
 
   return (
@@ -15,6 +19,7 @@ const LayoutSelection: FunctionComponent = () => {
       <Wrapper>
         <Select
           onChange={(e: any) => updateSelectedLayout(e)}
+          onClick={(e: any) => updateSelectedLayout(e)}
           className="custom-select"
           defaultValue={"default"}
         >
