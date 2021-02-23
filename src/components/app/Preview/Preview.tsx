@@ -14,6 +14,13 @@ const Preview: FunctionComponent = () => {
     );
 
     if (updatedElementsArray) {
+      // Update the cache with the net Elements Array
+      window.localStorage.setItem(
+        "myNewsletterElements",
+        JSON.stringify(updatedElementsArray)
+      );
+
+      // Update the Context with the new Elements Array
       setAppContext({ ...appContext, elements: [...updatedElementsArray] });
     }
   };
