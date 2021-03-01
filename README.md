@@ -1,12 +1,15 @@
 # myNewsletter
 
-This project was built to help devs and non-devs create awesome newsletters.
+This project was built to help devs and non-devs create awesome newsletters easily
  
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/vinisaveg/myNewsletter?color=%23f5476a)
 
-## Current state :calendar:
+## How it works :grey_question:
 
-The app is in it's first version. There is still improvements to be released.
+The app is designed in a way that allows you to create your newsletter by only filling the needed input fields. You can choose a Pre Created Layout to insert into the Current Empty Newsletter, which will show a preview right bellow the inputs form. Once you are satisfied with your brand new newsletter, just hit the Build button and it will be downloaded. 
+
+The only thing you will need to do is create a layout as a Component, and add it to a layout data file, so you can later on, add that personalized component to the newsletter document. It will need a few configuration, but once you have it, you will be able to create lots of newsletters based on your layout components, fast and easy.
+
 
 ## Installing :construction:
 
@@ -37,12 +40,6 @@ To start the app run the following command:
 ```
 
 The app should be running on http://localhost:3000 :bird:
-
-## How it works :grey_question:
-
-The app is designed in a way that allows you to create your newsletter by only filling the needed input fields. You can choose a Pre Created Layout to insert into the Current Empty Newsletter, which will show a preview right bellow the inputs form. Once you are satisfied with your brand new newsletter, just hit the Build button and it will be downloaded. 
-
-The only deal is that, you will need to create a layout as a Component, and add it to a layout data file, so you can later on, add that personalized component to the newsletter document. It will need a few configuration, but once you have it, you will be able to create lots of newsletters based on your layout components.
 
 ## Usage (non-devs) :notebook:
 
@@ -123,14 +120,48 @@ Also insert it to the _LayoutSelection_, so you can have it on the app.
 
 ```
 
+### Component layout with images :exclamation:
+
+To be able to work with images on components, you have to add a data attribute: **data-real-src** to the img tag, and a class: **img-component** to it's parent. 
+
+```TSX
+
+  interface CustomComponentWithImageProps {
+  copy: string;
+  subCopy: string;
+  imageName: string;
+}
+
+const CustomComponentWithImage: FunctionComponent<CustomComponentWithImageProps> = ({ copy, subCopy, imageName }) => {
+  return (
+    <div className="CustomComponentWithImage img-component">
+
+      <img
+        data-real-src={imageName}
+        src="..."
+        alt="..."
+      />
+     
+      <p className="customComponentWithImage-copy">{copy}</p>
+
+      <p className="customComponentWithImage-sub-copy">{subCopy}</p>
+      
+    </div>
+  );
+};
+
+export default CustomComponent;
+
+```
+
 You can also import fonts, insert css files or change the base HTML, that sits inside the _public_ folder.
 
-Inside the services folder, we have three files:
+Inside the services folder, we have four files:
 
 - handleImagePaths: Will replace the images src to the one given in the input field.
 - generateNewsletter: Receives the newsletter content as a String and returns a Document.
 - buildAndShip: Creates a blob with the newsletter Document and fires a download action.
-- cleanHTML - Removes all unecessary components -> Buttons, Divs or Layers from the HTML.
+- cleanHTML: Removes all unecessary components -> Buttons, Divs or Layers from the HTML.
 
 ## Contributing :+1:
 

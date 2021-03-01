@@ -20,7 +20,7 @@ export const Input = styled.input`
   height: 30px;
   box-sizing: border-box;
   padding: 6px;
-  margin: 7px 10px;
+  margin: 7px 1px;
   border-radius: 6px;
   outline-color: #f5476a;
   outline-offset: 0px;

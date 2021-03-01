@@ -1,8 +1,13 @@
 import { cleanHTML } from "./cleanHTML";
 
 const htmlFile = "http://localhost:3000/newsletter.html";
-
-// Function will receive a content (string)
+/**
+ * Set the HTML Title, Snippet and append the Content to the HTML page.
+ *
+ * @param {string} title The HTML Page Title
+ * @param {string} snippet The HTML Page Snippet
+ * @param {string} content The HTML Page Content
+ */
 export const generateNewsletter = (
   title: string,
   snippet: string,
