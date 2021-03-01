@@ -3,5 +3,5 @@ export type Layout = {
   fields: {
     [key: string]: string;
   };
-  element: (props: any) => JSX.Element;
+  element: (props: { [key: string]: string }) => JSX.Element;
 };

@@ -7,7 +7,7 @@ export type Newsletter = {
   elements: Array<Element>;
   content?: string;
   currentElement: string;
-  currentElementOptions?: any; // set a better type
+  currentElementOptions?: { [key: string]: string };
   isUpdating: boolean;
   updatingId: string;
   updatingLayoutFields: Array<string>;

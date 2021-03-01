@@ -97,7 +97,7 @@ const ShowInputs: FunctionComponent = () => {
 
         <Button
           type="submit"
-          margin={["0px", "10px", "0px", "10px"]}
+          margin={["15px", "0px", "0px", "0px"]}
           color="white"
           bgColor="#f5476a;"
         >
