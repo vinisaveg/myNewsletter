@@ -150,7 +150,7 @@ const CustomComponentWithImage: FunctionComponent<CustomComponentWithImageProps>
   );
 };
 
-export default CustomComponent;
+export default CustomComponentWithImage;
 
 ```
 
