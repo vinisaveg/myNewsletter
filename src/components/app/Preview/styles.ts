@@ -31,3 +31,38 @@ export const UpdateLayoutButton = styled(DeleteLayoutButton)`
   right: 100px;
   top: 60px;
 `;
+
+export const UpDownButtonsWrapper = styled.div`
+  display: block;
+  display: flex;
+  position: absolute;
+  right: 100px;
+  top: 120px;
+  z-index: 10;
+`;
+
+export const UpDownButton = styled.button`
+  width: 35px;
+  height: 35px;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  text-align: center;
+  color: #ffffff;
+  background-color: #0078d7;
+  transition: filter 150ms ease-in-out;
+  cursor: pointer;
+  margin-bottom: 30px;
+
+  &:first-child {
+    margin-right: 5px;
+  }
+
+  &:hover {
+    filter: brightness(1.1);
+  }
+
+  @media screen and (max-width: 850px) {
+    display: none;
+  }
+`;

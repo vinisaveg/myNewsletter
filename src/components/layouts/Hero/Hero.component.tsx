@@ -15,7 +15,7 @@ const Hero: FunctionComponent<HeroProps> = ({
       <a rel="noreferrer" target="_blank" href={link}>
         <img
           data-real-src={imageName}
-          src="https://images.pexels.com/photos/1072179/pexels-photo-1072179.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=427&w=640"
+          src="https://raw.githubusercontent.com/vinisaveg/myNewsletter/main/preview/img/test.jpg"
           alt="Default"
           className="hero-image"
         />

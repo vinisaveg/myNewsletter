@@ -17,6 +17,8 @@ const data: Array<Layout> = [
   },
   {
     name: "hero",
+    imagePreview:
+      "https://raw.githubusercontent.com/vinisaveg/myNewsletter/main/preview/img/test.jpg",
     fields: {
       imageName: "",
       link: "",
