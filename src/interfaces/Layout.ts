@@ -1,5 +1,6 @@
 export type Layout = {
   name: string;
+  imagePreview?: string;
   fields: {
     [key: string]: string;
   };

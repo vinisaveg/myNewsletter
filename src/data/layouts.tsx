@@ -17,6 +17,8 @@ const data: Array<Layout> = [
   },
   {
     name: "hero",
+    imagePreview:
+      "https://image.freepik.com/free-vector/abstract-fluid-geometric-background-colorful-wavy-shape-composition_67845-214.jpg",
     fields: {
       imageName: "",
       link: "",
