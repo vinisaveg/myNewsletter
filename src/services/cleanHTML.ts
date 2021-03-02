@@ -5,7 +5,7 @@
  */
 export const cleanHTML = (html: HTMLElement) => {
   //   Gather all Delete Buttons from the HTML Content
-  const componentsToRemove = html.querySelectorAll("button.delete-component");
+  const componentsToRemove = html.querySelectorAll(".delete-component");
 
   //   Removes all Delete Buttons from the HTML Content
   componentsToRemove.forEach((component) => {

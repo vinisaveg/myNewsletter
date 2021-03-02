@@ -3,7 +3,13 @@ import React, { FunctionComponent, useContext } from "react";
 import { AppContext } from "../../../context/context";
 import data from "../../../data/layouts";
 
-import { Wrapper, DeleteLayoutButton, UpdateLayoutButton } from "./styles";
+import {
+  Wrapper,
+  DeleteLayoutButton,
+  UpdateLayoutButton,
+  UpDownButtonsWrapper,
+  UpDownButton,
+} from "./styles";
 
 const Preview: FunctionComponent = () => {
   const [appContext, setAppContext] = useContext(AppContext);
@@ -54,6 +60,51 @@ const Preview: FunctionComponent = () => {
     }
   };
 
+  const handleUpAndDown = (id: string, direction: string) => {
+    let elementToMove = appContext.elements.find(
+      (element) => element.id === id
+    );
+
+    if (elementToMove) {
+      let elementToMoveIndex = appContext.elements.indexOf(elementToMove);
+
+      if (elementToMoveIndex === 0 && direction === "up") {
+        return;
+      }
+
+      if (
+        elementToMoveIndex === appContext.elements.length - 1 &&
+        direction === "down"
+      ) {
+        return;
+      }
+
+      let nextElementToMove =
+        direction === "up"
+          ? appContext.elements[elementToMoveIndex - 1]
+          : appContext.elements[elementToMoveIndex + 1];
+
+      let nextElementToMoveIndex = appContext.elements.indexOf(
+        nextElementToMove
+      );
+
+      const elementsArrayToUpdate = appContext.elements;
+
+      elementsArrayToUpdate[elementToMoveIndex] = nextElementToMove;
+      elementsArrayToUpdate[nextElementToMoveIndex] = elementToMove;
+
+      setAppContext({
+        ...appContext,
+        elements: elementsArrayToUpdate,
+      });
+
+      window.localStorage.setItem(
+        "myNewsletterElements",
+        JSON.stringify(elementsArrayToUpdate)
+      );
+    }
+  };
+
   return (
     <Wrapper id="content">
       {appContext.elements?.map((element) => (
@@ -77,6 +128,15 @@ const Preview: FunctionComponent = () => {
           >
             Update
           </UpdateLayoutButton>
+
+          <UpDownButtonsWrapper className="delete-component">
+            <UpDownButton onClick={() => handleUpAndDown(element.id, "up")}>
+              &#9195;
+            </UpDownButton>
+            <UpDownButton onClick={() => handleUpAndDown(element.id, "down")}>
+              &#9196;
+            </UpDownButton>
+          </UpDownButtonsWrapper>
         </div>
       ))}
     </Wrapper>
