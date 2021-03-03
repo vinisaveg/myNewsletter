@@ -86,6 +86,7 @@ const BaseInformation: FunctionComponent = () => {
         onChange={formik.handleChange}
         value={formik.values.title}
         disabled={infoSaved}
+        required
       />
       <Input
         id="snippet"
@@ -95,6 +96,7 @@ const BaseInformation: FunctionComponent = () => {
         onChange={formik.handleChange}
         value={formik.values.snippet}
         disabled={infoSaved}
+        required
       />
       <Input
         id="imagesFolderPath"
@@ -104,6 +106,7 @@ const BaseInformation: FunctionComponent = () => {
         onChange={formik.handleChange}
         value={formik.values.imagesFolderPath}
         disabled={infoSaved}
+        required
       />
 
       <Button

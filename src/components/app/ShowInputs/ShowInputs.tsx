@@ -92,6 +92,7 @@ const ShowInputs: FunctionComponent = () => {
             value={formik.values.key}
             type="text"
             placeholder={key}
+            required
           />
         ))}
 

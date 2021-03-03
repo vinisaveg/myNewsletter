@@ -98,6 +98,7 @@ const UpdateModal: FunctionComponent = () => {
             name={field}
             type="text"
             placeholder={field}
+            required
           />
         ))}
 
