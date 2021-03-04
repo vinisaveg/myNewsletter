@@ -1,35 +1,24 @@
 import styled from "styled-components";
 
-import { Button } from "../../../styles/shared/Button";
-
 export const Wrapper = styled.div`
   position: relative;
   padding: 20px 0px;
   margin: 0 auto;
   text-align: center;
+  max-width: 1200px;
 
   .layout {
     position: relative;
   }
 `;
 
-export const DeleteLayoutButton = styled(Button)`
+export const OptionsButtonWrapper = styled.div`
   display: block;
+  display: flex;
   position: absolute;
-  right: 100px;
-  top: 0;
+  right: 20px;
+  top: 0px;
   z-index: 10;
-  max-width: 80px;
-  padding: 10px;
-
-  @media screen and (max-width: 850px) {
-    display: none;
-  }
-`;
-
-export const UpdateLayoutButton = styled(DeleteLayoutButton)`
-  right: 100px;
-  top: 60px;
 `;
 
 export const UpDownButtonsWrapper = styled.div`
@@ -37,7 +26,7 @@ export const UpDownButtonsWrapper = styled.div`
   display: flex;
   position: absolute;
   right: 100px;
-  top: 120px;
+  top: 0px;
   z-index: 10;
 `;
 
