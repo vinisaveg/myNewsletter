@@ -5,8 +5,7 @@ import data from "../../../data/layouts";
 
 import {
   Wrapper,
-  DeleteLayoutButton,
-  UpdateLayoutButton,
+  OptionsButtonWrapper,
   UpDownButtonsWrapper,
   UpDownButton,
 } from "./styles";
@@ -116,30 +115,22 @@ const Preview: FunctionComponent = () => {
         <div className="layout" key={element.id}>
           {element.component}
 
-          <DeleteLayoutButton
-            className="delete-component"
-            onClick={() => handleDeleteLayout(element.id)}
-            color="white"
-            bgColor="#f5476a;"
-          >
-            Remove
-          </DeleteLayoutButton>
+          <OptionsButtonWrapper className="delete-component">
+            <UpDownButton onClick={() => handleShowUpdateModal(element.id)}>
+              &#9997;
+            </UpDownButton>
 
-          <UpdateLayoutButton
-            className="delete-component"
-            onClick={() => handleShowUpdateModal(element.id)}
-            color="#222222"
-            bgColor="#f2ff80;"
-          >
-            Update
-          </UpdateLayoutButton>
+            <UpDownButton onClick={() => handleDeleteLayout(element.id)}>
+              &#10060;
+            </UpDownButton>
+          </OptionsButtonWrapper>
 
           <UpDownButtonsWrapper className="delete-component">
             <UpDownButton onClick={() => handleUpAndDown(element.id, "up")}>
-              &#9195;
+              &#128070;
             </UpDownButton>
             <UpDownButton onClick={() => handleUpAndDown(element.id, "down")}>
-              &#9196;
+              &#128071;
             </UpDownButton>
           </UpDownButtonsWrapper>
         </div>
