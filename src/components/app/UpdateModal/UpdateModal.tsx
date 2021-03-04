@@ -17,8 +17,8 @@ const UpdateModal: FunctionComponent = () => {
 
   useEffect(() => {
     // Set the Formik Object Type to handle the inputs fields values to update
-    appContext.updatingLayoutFields.forEach((key) => {
-      setInitialValuesFormik({ [key]: "", ...initialValuesFormik });
+    appContext.updatingLayoutFieldsValues?.forEach((key) => {
+      setInitialValuesFormik({ ...key });
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -81,6 +81,7 @@ const UpdateModal: FunctionComponent = () => {
       isUpdating: false,
       updatingId: "",
       updatingLayoutFields: [],
+      updatingLayoutFieldsValues: [{}],
     });
 
     setInitialValuesFormik({});
@@ -97,7 +98,8 @@ const UpdateModal: FunctionComponent = () => {
             id={field}
             name={field}
             type="text"
-            placeholder={field}
+            placeholder={formik.values[field]}
+            value={formik.values[field] || ""}
             required
           />
         ))}
@@ -106,7 +108,7 @@ const UpdateModal: FunctionComponent = () => {
           <Button
             onClick={() => handleCloseUpdateModal()}
             width="50%"
-            type="submit"
+            type="button"
             margin={["10px", "10px", "0px", "0px"]}
             color="white"
             bgColor="#acacac;"

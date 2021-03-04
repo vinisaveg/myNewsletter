@@ -40,6 +40,10 @@ const Preview: FunctionComponent = () => {
     // Find the element to update
     let elementNameToUpdate = appContext.elements[elementIndexToUpdate].name;
 
+    // Grab the element props
+    let elementPropsToUpdate =
+      appContext.elements[elementIndexToUpdate].component?.props;
+
     // Grab the correspondig Layout
     let layoutToUpdate = data.find(
       (layout) => layout.name === elementNameToUpdate
@@ -56,6 +60,7 @@ const Preview: FunctionComponent = () => {
         isUpdating: true,
         updatingId: id,
         updatingLayoutFields: layoutFields,
+        updatingLayoutFieldsValues: [elementPropsToUpdate],
       });
     }
   };
