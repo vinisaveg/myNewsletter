@@ -11,4 +11,5 @@ export type Newsletter = {
   isUpdating: boolean;
   updatingId: string;
   updatingLayoutFields: Array<string>;
+  updatingLayoutFieldsValues?: [{ [key: string]: string }];
 };
